@@ -1,0 +1,6 @@
+{
+  "name": "AI Detective: Data Latih & Bias Arena - Al Azhar Tech",
+  "description": "Media pembelajaran interaktif layar sentuh IFP untuk siswa SMP Fase D mata pelajaran Koding & Kecerdasan Artifisial, menyelaraskan materi Data Latih & Bias AI dengan Adab Digital Islam (Siddiq, 'Adl, Tabayyun, Amanah).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

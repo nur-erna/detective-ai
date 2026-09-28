@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>AI Detective: Data Latih & Bias Arena - Al Azhar Tech</title>
+  <meta name="description" content="Media pembelajaran interaktif layar sentuh IFP untuk siswa SMP Fase D mata pelajaran Koding & Kecerdasan Artifisial, menyelaraskan materi Data Latih & Bias AI dengan Adab Digital Islam (Siddiq, 'Adl, Tabayyun, Amanah).">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+            cinzel: ['Cinzel', 'Georgia', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Plus Jakarta Sans & Cinzel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      background-color: #f8fafc;
+      background-image: radial-gradient(#cbd5e1 1.2px, transparent 1.2px), radial-gradient(#e2e8f0 1.2px, #f8fafc 1.2px);
+      background-size: 24px 24px;
+      background-position: 0 0, 12px 12px;
+    }
+
+    .font-cinzel { font-family: 'Cinzel', Georgia, serif; }
+
+    /* Playful Clay Motion & Cheerful Bright Surfaces */
+    .clay-card-bright {
+      background: #ffffff;
+      border: 3px solid #e2e8f0;
+      box-shadow: 0 8px 0 0 #cbd5e1, 0 14px 25px -4px rgba(100, 116, 139, 0.12);
+      border-radius: 1.5rem;
+    }
+
+    .clay-card-emerald {
+      background: #f0fdf4;
+      border: 3px solid #86efac;
+      box-shadow: 0 8px 0 0 #4ade80, 0 14px 25px -4px rgba(34, 197, 94, 0.15);
+      border-radius: 1.5rem;
+    }
+
+    .clay-card-rose {
+      background: #fff1f2;
+      border: 3px solid #fecdd3;
+      box-shadow: 0 8px 0 0 #fb7185, 0 14px 25px -4px rgba(244, 63, 94, 0.15);
+      border-radius: 1.5rem;
+    }
+
+    .clay-card-sky {
+      background: #f0f9ff;
+      border: 3px solid #bae6fd;
+      box-shadow: 0 8px 0 0 #38bdf8, 0 14px 25px -4px rgba(14, 165, 233, 0.15);
+      border-radius: 1.5rem;
+    }
+
+    /* 3D Pop Buttons */
+    .btn-game-emerald {
+      background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+      box-shadow: 0 6px 0 #047857, 0 10px 18px rgba(16, 185, 129, 0.35);
+      color: #ffffff;
+      font-weight: 800;
+      transition: all 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-game-emerald:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 0 #047857; }
+    .btn-game-emerald:active:not(:disabled) { transform: translateY(4px); box-shadow: 0 2px 0 #047857; }
+
+    .btn-game-amber {
+      background: linear-gradient(180deg, #fbbf24 0%, #f59e0b 100%);
+      box-shadow: 0 6px 0 #d97706, 0 10px 18px rgba(245, 158, 11, 0.35);
+      color: #78350f;
+      font-weight: 800;
+      transition: all 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-game-amber:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 0 #d97706; }
+    .btn-game-amber:active:not(:disabled) { transform: translateY(4px); box-shadow: 0 2px 0 #d97706; }
+
+    .btn-game-sky {
+      background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
+      box-shadow: 0 6px 0 #0369a1, 0 10px 18px rgba(14, 165, 233, 0.35);
+      color: #ffffff;
+      font-weight: 800;
+      transition: all 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-game-sky:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 0 #0369a1; }
+    .btn-game-sky:active:not(:disabled) { transform: translateY(4px); box-shadow: 0 2px 0 #0369a1; }
+
+    .btn-game-white {
+      background: #ffffff;
+      color: #334155;
+      font-weight: 800;
+      border: 2px solid #e2e8f0;
+      box-shadow: 0 5px 0 #cbd5e1, 0 8px 15px rgba(0, 0, 0, 0.06);
+      transition: all 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-game-white:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 7px 0 #cbd5e1; }
+    .btn-game-white:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 2px 0 #cbd5e1; }
+
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-modal {
+        position: fixed !important;
+        inset: 0 !important;
+        background: #ffffff !important;
+        z-index: 9999 !important;
+        padding: 0 !important;
+      }
+      @page { size: landscape; margin: 0.8cm; }
+    }
+  </style>
+</head>
+<body class="text-slate-800 min-h-screen flex flex-col selection:bg-amber-300 selection:text-amber-950">
+
+  <!-- ================= HEADER ================= -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b-4 border-amber-300 px-4 sm:px-6 py-3.5 shadow-md no-print">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-500 flex items-center justify-center text-2xl shadow-[0_4px_0_0_#d97706] border-2 border-white">
+          🕵️‍♂️
+        </div>
+        <div>
+          <div class="text-lg sm:text-xl font-extrabold tracking-tight text-slate-900 flex items-center gap-2">
+            <span>AI Detective</span>
+            <span class="text-xs px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-extrabold border-2 border-emerald-300">
+              Al Azhar Tech
+            </span>
+          </div>
+          <p class="text-xs font-semibold text-slate-500 hidden sm:block">
+            Arena Seru Belajar Data Latih & Bias AI · Fase D SMP
+          </p>
+        </div>
+      </div>
+
+      <nav class="flex items-center gap-2">
+        <button onclick="openModal('guide-modal')" class="btn-game-white px-3 py-2 text-xs sm:text-sm rounded-2xl flex items-center gap-1.5">
+          🧭 <span class="hidden md:inline">Panduan</span> Detektif
+        </button>
+        <button onclick="openModal('adab-modal')" class="btn-game-white px-3 py-2 text-xs sm:text-sm rounded-2xl flex items-center gap-1.5">
+          📖 <span class="hidden md:inline">4 Pilar</span> Adab Digital
+        </button>
+        <button onclick="openModal('quiz-modal')" class="btn-game-sky px-3 py-2 text-xs sm:text-sm rounded-2xl flex items-center gap-1.5">
+          ❓ <span>Kuis Ceria</span>
+        </button>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button id="sound-btn" onclick="toggleSound()" class="w-11 h-11 rounded-2xl bg-white border-2 border-slate-200 shadow-[0_4px_0_0_#cbd5e1] flex items-center justify-center text-slate-700 text-lg">
+          🔊
+        </button>
+        <button onclick="openModal('cert-modal')" class="btn-game-amber px-4 py-2 text-xs sm:text-sm rounded-2xl flex items-center gap-1.5">
+          📜 <span class="hidden sm:inline">Sertifikat</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO BANNER ================= -->
+  <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 pt-5 pb-1 no-print">
+    <div class="clay-card-bright p-4 sm:p-5 flex flex-col md:flex-row items-center justify-between gap-5 bg-gradient-to-r from-amber-50 via-white to-sky-50 border-3 border-amber-200">
+      <div class="flex items-center gap-4 sm:gap-5">
+        <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-amber-200 border-4 border-amber-300 shadow-md flex items-center justify-center text-5xl shrink-0">
+          🔎
+        </div>
+        <div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-200 text-amber-900 text-xs font-black mb-1">
+            ⭐ Misi Detektif AI Al Azhar
+          </div>
+          <h1 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+            Ayo Bantu Robot AI Belajar Bersikap Adil! 🌟
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-600 max-w-xl mt-1">
+            Cari tahu mengapa robot bisa salah menduga, lalu tambahkan contoh data yang seimbang agar robot menjadi adil dan pintar!
+          </p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <div id="ai-status-badge" class="px-3.5 py-1.5 rounded-xl bg-rose-500 text-white text-xs font-extrabold shadow-md flex items-center gap-1.5 animate-pulse">
+          ⚠️ Ada Halusinasi / Bias!
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CASE SELECTOR ================= -->
+  <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 py-4 no-print">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-3">
+      <div class="text-xs font-bold text-slate-600">
+        <span class="px-2.5 py-1 rounded-lg bg-white border border-slate-300 shadow-sm text-slate-800">PILIH KASUS INVESTIGASI:</span>
+        <span>Sentuh tombol di samping</span>
+      </div>
+      <div class="grid grid-cols-3 gap-2.5 w-full md:w-auto">
+        <button onclick="switchCase('case-leaves')" id="btn-case-leaves" class="btn-game-emerald px-4 py-3 rounded-2xl text-xs sm:text-sm font-extrabold flex items-center justify-center gap-2">
+          🍂 <span>Sampah Organik</span>
+        </button>
+        <button onclick="switchCase('case-apples')" id="btn-case-apples" class="btn-game-white px-4 py-3 rounded-2xl text-xs sm:text-sm font-extrabold flex items-center justify-center gap-2">
+          🍎 <span>Buah Manis</span>
+        </button>
+        <button onclick="switchCase('case-cats')" id="btn-case-cats" class="btn-game-white px-4 py-3 rounded-2xl text-xs sm:text-sm font-extrabold flex items-center justify-center gap-2">
+          🐈 <span>Kucing Lucu</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 3-PANEL WORKSPACE ================= -->
+  <main class="max-w-7xl mx-auto w-full px-4 sm:px-6 flex-1 flex flex-col gap-6 no-print">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 flex-1">
+      
+      <!-- ================= PANEL 1: DIAGNOSIS BIAS ================= -->
+      <div id="panel-1" class="clay-card-rose p-5 flex flex-col justify-between transition-all">
+        <div>
+          <div class="flex items-center justify-between pb-3 border-b-2 border-slate-200">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-xl bg-rose-500 text-white flex items-center justify-center font-black text-sm shadow-sm">1</div>
+              <div>
+                <h3 class="text-sm font-extrabold text-slate-900">Tahap 1: Diagnosis Bias</h3>
+                <p class="text-[11px] font-semibold text-slate-500">Melihat Kesalahan Tebakan AI</p>
+              </div>
+            </div>
+            <span id="p1-status" class="text-[11px] font-black px-2.5 py-1 rounded-full bg-rose-200 text-rose-900">BIAS ⚠️</span>
+          </div>
+
+          <div class="mt-4 bg-white rounded-2xl p-4 border-2 border-slate-200 shadow-sm text-center">
+            <div id="sample-icon" class="text-6xl p-4 bg-amber-50 rounded-2xl border border-amber-200 inline-block shadow-inner mb-2">
+              🍂
+            </div>
+            <h4 id="sample-title" class="text-sm font-extrabold text-slate-900">Sampel Daun Cokelat Gugur</h4>
+            <p id="sample-desc" class="text-xs text-slate-600 mt-0.5">Daun gugur yang terkumpul di bawah pohon sekolah</p>
+          </div>
+
+          <div class="mt-4 bg-white rounded-2xl p-3 border-2 border-slate-200">
+            <div class="flex items-center justify-between text-xs mb-1.5">
+              <span class="font-extrabold text-slate-800">🧠 Jaringan Syaraf AI:</span>
+              <span id="canvas-status-text" class="text-[11px] font-black text-rose-600">Timpang / Berat Sebelah</span>
+            </div>
+            <div class="rounded-xl bg-slate-900 p-2 shadow-inner">
+              <canvas id="neural-canvas" width="320" height="100" class="w-full h-24 block rounded"></canvas>
+            </div>
+          </div>
+
+          <div class="mt-4 p-4 rounded-2xl bg-white border-2 border-slate-200 space-y-2 shadow-sm">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-bold text-slate-500">Tebakan Robot AI:</span>
+              <span id="prediction-confidence" class="font-mono font-black text-xs px-2 py-0.5 rounded bg-rose-100 text-rose-800">98.4%</span>
+            </div>
+            <div id="prediction-box" class="p-3 rounded-xl border-2 font-black text-sm bg-rose-50 border-rose-400 text-rose-900">
+              ⚠️ Sampah Anorganik / Plastik
+            </div>
+            <p id="prediction-reason" class="text-xs text-slate-600 leading-relaxed">
+              Robot AI hanya dilatih dengan daun hijau. Warna cokelat disalahartikan sebagai plastik!
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-4 pt-3 border-t-2 border-slate-200">
+          <button onclick="retestAI()" class="w-full btn-game-white py-3 rounded-2xl text-xs sm:text-sm font-extrabold flex items-center justify-center gap-2 cursor-pointer">
+            🔄 Uji Ulang Tebakan Robot Sekarang
+          </button>
+        </div>
+      </div>
+
+      <!-- ================= PANEL 2: STUDIO DATASET SEIMBANG ================= -->
+      <div id="panel-2" class="clay-card-bright p-5 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between pb-3 border-b-2 border-slate-200">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-xl bg-emerald-500 text-white flex items-center justify-center font-black text-sm shadow-sm">2</div>
+              <div>
+                <h3 class="text-sm font-extrabold text-slate-900">Tahap 2: Studio Dataset ('Adl)</h3>
+                <p class="text-[11px] font-semibold text-slate-500">Ajari Robot dengan Contoh Baru</p>
+              </div>
+            </div>
+            <button onclick="resetDataset()" class="px-2.5 py-1 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold border border-slate-300">
+              ↺ Reset
+            </button>
+          </div>
+
+          <div class="mt-4 p-4 rounded-2xl bg-amber-50 border-2 border-amber-200">
+            <div class="flex items-center justify-between text-xs mb-2">
+              <span class="font-extrabold text-slate-800">⚖️ Keseimbangan Data Latih:</span>
+              <span id="balance-status" class="font-extrabold text-xs px-2.5 py-0.5 rounded-full bg-amber-200 text-amber-900">BELUM SEIMBANG</span>
+            </div>
+            <div class="w-full h-5 bg-white rounded-full overflow-hidden flex border-2 border-slate-300 p-0.5 shadow-inner">
+              <div id="bar-a" style="width: 90%" class="h-full bg-sky-500 rounded-l-full transition-all duration-300 flex items-center justify-center text-[10px] font-black text-white">90%</div>
+              <div id="bar-b" style="width: 10%" class="h-full bg-amber-500 rounded-r-full transition-all duration-300 flex items-center justify-center text-[10px] font-black text-white">10%</div>
+            </div>
+            <div class="grid grid-cols-2 gap-2 mt-3 pt-2 border-t border-amber-200 text-[11px] font-bold">
+              <div class="flex items-center gap-1.5 text-slate-700">
+                <div class="w-3 h-3 rounded-full bg-sky-500"></div>
+                <span id="label-cat-a">Hijau:</span>
+                <strong id="count-cat-a" class="font-mono text-slate-900">18</strong>
+              </div>
+              <div class="flex items-center gap-1.5 text-emerald-800">
+                <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+                <span id="label-cat-b">Cokelat:</span>
+                <strong id="count-cat-b" class="font-mono text-slate-900">2</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <div class="flex items-center justify-between text-xs mb-2">
+              <span class="font-extrabold text-slate-800">Pilih Sampel Baru untuk Diajarkan:</span>
+              <span id="samples-added-count" class="text-[11px] font-black px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">0 / 4 Ditambahkan</span>
+            </div>
+            <div id="sample-bank-list" class="space-y-2"></div>
+          </div>
+
+          <div id="training-banner" class="hidden mt-4 p-4 rounded-2xl bg-gradient-to-r from-sky-50 to-emerald-50 border-3 border-emerald-400 space-y-2 shadow-md animate-pulse">
+            <div class="flex justify-between text-xs font-black">
+              <span class="text-emerald-800">🚀 Sedang Melatih Otak AI...</span>
+              <span id="training-epoch-text" class="font-mono text-slate-900">Epoch 0/20</span>
+            </div>
+            <div class="w-full h-3.5 bg-white rounded-full overflow-hidden border-2 border-slate-300">
+              <div id="training-progress-fill" style="width: 0%" class="h-full bg-gradient-to-r from-sky-500 to-emerald-500 transition-all duration-100"></div>
+            </div>
+            <div class="flex justify-between text-[11px] font-mono font-bold text-slate-700 pt-1">
+              <span>Kesalahan (Loss): <strong id="training-loss-val" class="text-rose-600">0.840</strong></span>
+              <span>Akurasi: <strong id="training-acc-val" class="text-emerald-700">54%</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 pt-3 border-t-2 border-slate-200">
+          <button id="btn-retrain" disabled onclick="startRetraining()" class="w-full py-3.5 rounded-2xl text-xs sm:text-sm font-black flex items-center justify-center gap-2 bg-slate-200 text-slate-400 cursor-not-allowed border-2 border-slate-300">
+            🚀 + Masukkan 3 Foto Lagi untuk Latih Ulang
+          </button>
+        </div>
+      </div>
+
+      <!-- ================= PANEL 3: VERIFIKASI TABAYYUN ================= -->
+      <div id="panel-3" class="clay-card-bright opacity-85 p-5 flex flex-col justify-between transition-all">
+        <div>
+          <div class="flex items-center justify-between pb-3 border-b-2 border-slate-200">
+            <div class="flex items-center gap-2.5">
+              <div id="p3-badge" class="w-8 h-8 rounded-xl bg-slate-200 text-slate-500 flex items-center justify-center font-black text-sm shadow-sm">3</div>
+              <div>
+                <h3 class="text-sm font-extrabold text-slate-900">Tahap 3: Verifikasi Tabayyun</h3>
+                <p class="text-[11px] font-semibold text-slate-500">Uji Ketahanan & Raih Lencana</p>
+              </div>
+            </div>
+            <span id="p3-status" class="text-[11px] font-black px-2.5 py-1 rounded-full bg-slate-200 text-slate-600">TERKUNCI 🔒</span>
+          </div>
+
+          <div id="p3-locked" class="mt-8 text-center p-6 rounded-2xl bg-slate-50 border-2 border-dashed border-slate-300 space-y-3">
+            <div class="text-4xl">🔒</div>
+            <h4 class="text-sm font-black text-slate-700">Terkunci Sementara</h4>
+            <p class="text-xs text-slate-500 leading-relaxed max-w-xs mx-auto">
+              Ayo seimbangkan sampel di <strong>Tahap 2</strong> dan tekan <strong>Latih Ulang AI</strong> untuk membuka sertifikat!
+            </p>
+          </div>
+
+          <div id="p3-unlocked" class="hidden mt-4 space-y-4">
+            <div class="p-4 rounded-2xl bg-gradient-to-r from-emerald-50 to-teal-50 border-3 border-emerald-300 space-y-2 shadow-sm">
+              <div class="flex items-center justify-between text-xs">
+                <span class="font-black text-emerald-900">🛡️ Tebakan Baru AI yang Adil:</span>
+                <span class="font-mono font-black text-emerald-800 bg-emerald-200 px-2 py-0.5 rounded-full">99.2% Benar</span>
+              </div>
+              <div id="fair-prediction-title" class="p-2.5 rounded-xl bg-white border-2 border-emerald-300 text-emerald-950 text-sm font-black">
+                ✓ Sampah Organik Alami (Bahan Kompos)
+              </div>
+              <p id="fair-prediction-reason" class="text-xs text-emerald-900 leading-relaxed font-medium">
+                Mewujudkan prinsip 'Adl dan Tabayyun: Jangan menilai hakikat sesuatu hanya dari warna luar!
+              </p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-white border-2 border-slate-200 space-y-2.5 shadow-sm">
+              <div class="flex items-center justify-between text-xs">
+                <span class="font-black text-slate-900">⚡ Uji Ketahanan (Stress-Test Tabayyun):</span>
+                <span class="text-[10px] font-bold text-slate-500">Kasus Sulit</span>
+              </div>
+              <div id="stress-test-items" class="space-y-1.5 text-xs"></div>
+              <button onclick="runStressTest()" class="w-full btn-game-sky py-2.5 rounded-xl text-xs font-black flex items-center justify-center gap-1.5 mt-2 cursor-pointer">
+                ✓ Jalankan Stress-Test Sekarang
+              </button>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-amber-100 border-2 border-amber-300 flex items-center gap-3 shadow-sm">
+              <div class="w-12 h-12 rounded-2xl bg-amber-400 flex items-center justify-center text-2xl shadow-[0_3px_0_0_#d97706] border-2 border-white shrink-0">
+                🏆
+              </div>
+              <div>
+                <h4 class="text-xs font-black text-amber-950">Lencana: Master AI Detective ⭐</h4>
+                <p class="text-[11px] text-amber-900 font-medium">Model bebas dari bias dan terbukti adil!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 pt-3 border-t-2 border-slate-200">
+          <button id="btn-cert-trigger" disabled onclick="openModal('cert-modal')" class="w-full py-3.5 rounded-2xl text-xs sm:text-sm font-black flex items-center justify-center gap-2 bg-slate-200 text-slate-400 cursor-not-allowed border-2 border-slate-300">
+            📜 Buka & Cetak Sertifikat Digital Resmi
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="clay-card-bright p-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600 bg-white">
+      <div class="flex items-center gap-2 font-bold">
+        <span class="text-emerald-700">4 Pilar Adab Digital Al Azhar:</span>
+        <span>Siddiq (Jujur) · 'Adl (Adil) · Tabayyun (Cek Ulang) · Amanah (Tanggung Jawab)</span>
+      </div>
+      <div class="text-slate-500 text-[11px] font-semibold">
+        © 2026 Al Azhar Tech · Media Pembelajaran Interaktif IFP Siswa SMP Fase D
+      </div>
+    </div>
+  </main>
+
+  <!-- ================= MODAL 1 ================= -->
+  <div id="guide-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white border-4 border-amber-300 max-w-2xl w-full rounded-3xl p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeModal('guide-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-1.5 rounded-xl bg-slate-100">✕</button>
+      <div class="flex items-center gap-3 pb-4 border-b-2 border-slate-200">
+        <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-2xl border-2 border-emerald-300">🧭</div>
+        <div>
+          <h3 class="text-lg font-black text-slate-900">Petualangan Detektif AI Al Azhar</h3>
+          <p class="text-xs text-slate-500 font-semibold">Langkah Mudah Investigasi di Layar Sentuh IFP</p>
+        </div>
+      </div>
+      <div class="space-y-4 my-5 text-sm text-slate-700">
+        <div class="p-4 rounded-2xl bg-rose-50 border-2 border-rose-200">
+          <h4 class="font-black text-rose-800 mb-1">1. Tahap Diagnosis (Temukan Kesalahan AI) 🔍</h4>
+          <p class="text-xs text-slate-600">Lihat foto pada Panel 1. Robot AI membuat tebakan yang keliru karena belum pernah diajarkan foto yang beragam.</p>
+        </div>
+        <div class="p-4 rounded-2xl bg-amber-50 border-2 border-amber-200">
+          <h4 class="font-black text-amber-800 mb-1">2. Tahap Data Seimbang ('Adl) ⚖️</h4>
+          <p class="text-xs text-slate-600">Buka Panel 2. Tekan <strong>+ Masukkan</strong> pada sampel. Setelah seimbang (minimal 3 foto), tekan <strong>Latih Ulang AI</strong>!</p>
+        </div>
+        <div class="p-4 rounded-2xl bg-sky-50 border-2 border-sky-200">
+          <h4 class="font-black text-sky-800 mb-1">3. Tahap Verifikasi Tabayyun & Sertifikat 🏆</h4>
+          <p class="text-xs text-slate-600">Buka Panel 3. Uji ketahanan robot dengan <strong>Stress-Test Tabayyun</strong> lalu cetak sertifikat resmi!</p>
+        </div>
+      </div>
+      <div class="pt-4 border-t-2 border-slate-200 flex justify-end">
+        <button onclick="closeModal('guide-modal')" class="btn-game-emerald px-6 py-2.5 rounded-2xl font-black text-sm">Siap Berinvestigasi! 🚀</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL 2 ================= -->
+  <div id="adab-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white border-4 border-amber-300 max-w-4xl w-full rounded-3xl p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeModal('adab-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-2 rounded-xl bg-slate-100 hover:bg-slate-200 transition-colors cursor-pointer">✕</button>
+      <div class="flex items-center gap-3.5 pb-4 border-b-2 border-slate-200">
+        <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center text-2xl border-2 border-amber-300 shadow-sm shrink-0">📖</div>
+        <div>
+          <h3 class="text-xl font-black text-slate-900 tracking-tight">4 Pilar Adab Digital</h3>
+          <p class="text-xs sm:text-sm text-slate-500 font-semibold">Pedoman Akhlak Mulia Muslim saat Mengembangkan Teknologi</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+        <div class="p-5 rounded-2xl bg-gradient-to-br from-amber-50 to-orange-50/60 border-2 border-amber-200 shadow-sm flex flex-col justify-between space-y-3">
+          <div class="flex items-center justify-between gap-3 pb-2 border-b border-amber-200/70">
+            <span class="text-amber-950 text-sm font-black tracking-tight">1. Siddiq (Kejujuran Data)</span>
+            <span class="shrink-0 whitespace-nowrap text-[11px] px-3 py-1 rounded-full bg-amber-200 text-amber-900 font-mono font-black border border-amber-300 shadow-xs">QS. Al-Ahzab: 70</span>
+          </div>
+          <p class="text-slate-700 text-xs sm:text-sm leading-relaxed font-medium">Kita harus jujur mengumpulkan data asli. Jangan pernah memalsukan atau mengedit label demi kepentingan curang!</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-gradient-to-br from-emerald-50 to-teal-50/60 border-2 border-emerald-200 shadow-sm flex flex-col justify-between space-y-3">
+          <div class="flex items-center justify-between gap-3 pb-2 border-b border-emerald-200/70">
+            <span class="text-emerald-950 text-sm font-black tracking-tight">2. 'Adl (Keadilan Bersama)</span>
+            <span class="shrink-0 whitespace-nowrap text-[11px] px-3 py-1 rounded-full bg-emerald-200 text-emerald-900 font-mono font-black border border-emerald-300 shadow-xs">QS. An-Nahl: 90</span>
+          </div>
+          <p class="text-slate-700 text-xs sm:text-sm leading-relaxed font-medium">Dataset tidak boleh membeda-bedakan warna kulit, suku, atau wilayah. Semua ragam ciptaan Allah harus dihargai setara!</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-gradient-to-br from-sky-50 to-blue-50/60 border-2 border-sky-200 shadow-sm flex flex-col justify-between space-y-3">
+          <div class="flex items-center justify-between gap-3 pb-2 border-b border-sky-200/70">
+            <span class="text-sky-950 text-sm font-black tracking-tight">3. Tabayyun (Cek Kebenaran)</span>
+            <span class="shrink-0 whitespace-nowrap text-[11px] px-3 py-1 rounded-full bg-sky-200 text-sky-900 font-mono font-black border border-sky-300 shadow-xs">QS. Al-Hujurat: 6</span>
+          </div>
+          <p class="text-slate-700 text-xs sm:text-sm leading-relaxed font-medium">Jangan langsung percaya 100% pada tebakan robot. Gunakan akal pikiran kita untuk menguji dan memverifikasi kebenarannya!</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-gradient-to-br from-purple-50 to-indigo-50/60 border-2 border-purple-200 shadow-sm flex flex-col justify-between space-y-3">
+          <div class="flex items-center justify-between gap-3 pb-2 border-b border-purple-200/70">
+            <span class="text-purple-950 text-sm font-black tracking-tight">4. Amanah (Tanggung Jawab)</span>
+            <span class="shrink-0 whitespace-nowrap text-[11px] px-3 py-1 rounded-full bg-purple-200 text-purple-900 font-mono font-black border border-purple-300 shadow-xs">QS. Al-Anfal: 27</span>
+          </div>
+          <p class="text-slate-700 text-xs sm:text-sm leading-relaxed font-medium">Koding AI adalah amanah dari Allah. Program komputer harus dibuat untuk menolong sesama dan menjaga kelestarian alam semesta.</p>
+        </div>
+      </div>
+      <div class="pt-4 border-t-2 border-slate-200 flex justify-end">
+        <button onclick="closeModal('adab-modal')" class="btn-game-amber px-6 py-2.5 rounded-2xl font-black text-sm text-amber-950 cursor-pointer shadow-md">Pahami & Amalkan 🌟</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL 3 ================= -->
+  <div id="quiz-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white border-4 border-sky-300 max-w-3xl w-full rounded-3xl p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeModal('quiz-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-1.5 rounded-xl bg-slate-100">✕</button>
+      <div class="flex items-center gap-3 pb-4 border-b-2 border-slate-200">
+        <div class="w-12 h-12 rounded-2xl bg-sky-100 text-sky-800 flex items-center justify-center text-2xl border-2 border-sky-300">❓</div>
+        <div>
+          <h3 class="text-lg font-black text-slate-900">Kuis Refleksi Adab & Bias AI Ceria</h3>
+          <p class="text-xs text-slate-500 font-semibold">5 Soal Interaktif · Nilai Minimal Lulus: 80 Poin</p>
+        </div>
+      </div>
+      <div class="space-y-5 my-5 text-xs sm:text-sm">
+        <div class="p-4 rounded-2xl bg-slate-50 border-2 border-slate-200 space-y-2">
+          <p class="font-extrabold text-slate-900">1. Kenapa robot AI salah menebak daun cokelat kering sebagai "Plastik"?</p>
+          <div class="space-y-1 pt-1">
+            <label class="block p-2 rounded-xl bg-white border border-slate-200 cursor-pointer font-bold"><input type="radio" name="q1" value="0" class="mr-2"> Karena komputernya sedang lelah</label>
+            <label class="block p-2 rounded-xl bg-white border border-slate-200 cursor-pointer font-bold"><input type="radio" name="q1" value="1" class="mr-2"> Karena data latihnya tidak adil, 90% fotonya daun hijau saja</label>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-50 border-2 border-slate-200 space-y-2">
+          <p class="font-extrabold text-slate-900">2. Prinsip 'Adl (Keadilan):</p>
+          <p class="text-xs text-slate-600 font-semibold">Menyeimbangkan proporsi contoh foto untuk semua kelompok ciptaan Allah.</p>
+          <label class="block p-2 rounded-xl bg-white border border-slate-200 cursor-pointer font-bold"><input type="checkbox" id="q2-check" class="mr-2"> Saya memahami prinsip adil ini</label>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-50 border-2 border-slate-200 space-y-2">
+          <p class="font-extrabold text-slate-900">3. Mengabaikan buah apel petani lokal melanggar adab apa?</p>
+          <div class="space-y-1 pt-1">
+            <label class="block p-2 rounded-xl bg-white border border-slate-200 cursor-pointer font-bold"><input type="radio" name="q3" value="1" class="mr-2"> Adab 'Adl (Keadilan), karena merugikan petani lokal kita</label>
+            <label class="block p-2 rounded-xl bg-white border border-slate-200 cursor-pointer font-bold"><input type="radio" name="q3" value="0" class="mr-2"> Kecepatan sinyal WiFi</label>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-50 border-2 border-slate-200 space-y-2">
+          <p class="font-extrabold text-slate-900">4. Manakah perbuatan yang Etis / Baik?</p>
+          <label class="block p-2 rounded-xl bg-white border border-slate-200 cursor-pointer font-bold"><input type="radio" name="q4" value="1" class="mr-2"> Menguji sistem AI pada beragam latar belakang sebelum disebarkan</label>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-50 border-2 border-slate-200 space-y-2">
+          <p class="font-extrabold text-slate-900">5. Sikap Tabayyun: Jika robot AI menuduh seorang teman mencontek, sikap kita:</p>
+          <label class="block p-2 rounded-xl bg-white border border-slate-200 cursor-pointer font-bold"><input type="radio" name="q5" value="1" class="mr-2"> Bertabayyun (menanyakan baik-baik dan memeriksa faktanya terlebih dahulu)</label>
+        </div>
+      </div>
+
+      <div id="quiz-result-box" class="hidden p-4 rounded-2xl bg-emerald-50 border-3 border-emerald-400 text-center space-y-1 mb-4">
+        <h4 class="text-sm font-black text-emerald-950">Hasil Evaluasi Kuis</h4>
+        <div id="quiz-score-display" class="text-4xl font-black font-mono text-emerald-600">100 / 100</div>
+        <p class="text-xs font-bold text-emerald-900">🎉 Mumtaz! Kamu memahami prinsip Data Latih & Adab AI!</p>
+      </div>
+
+      <div class="pt-4 border-t-2 border-slate-200 flex justify-end">
+        <button onclick="calculateQuizScore()" class="btn-game-sky px-6 py-2.5 rounded-2xl font-black text-sm">Kirim Jawaban & Hitung Skor 🎯</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL 4 ================= -->
+  <div id="cert-modal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-md hidden items-center justify-center p-2 sm:p-4 print-modal">
+    <div class="bg-white border-4 border-amber-400 max-w-4xl w-full rounded-3xl p-4 sm:p-6 shadow-2xl relative max-h-[96vh] overflow-y-auto">
+      <div class="flex items-center justify-between pb-3 border-b-2 border-slate-200 no-print">
+        <span class="text-amber-700 font-black text-sm">🎓 Pratinjau Sertifikat Digital A4 Landscape</span>
+        <div class="flex items-center gap-2">
+          <button onclick="window.print()" class="btn-game-amber px-4 py-2 rounded-xl text-xs font-black flex items-center gap-1.5">🖨️ Cetak</button>
+          <button onclick="closeModal('cert-modal')" class="p-2 rounded-xl bg-slate-100 text-slate-600">✕</button>
+        </div>
+      </div>
+
+      <div class="my-3 p-3 bg-amber-50 rounded-2xl border-2 border-amber-200 flex items-center gap-3 no-print">
+        <label class="text-xs text-amber-950 font-black">✍️ Ketik Nama Murid:</label>
+        <input type="text" id="cert-name-input" value="Ahmad Zaki Pratama" oninput="updateCertName(this.value)" class="flex-1 bg-white border-2 border-amber-300 rounded-xl px-3 py-1.5 text-xs font-bold text-slate-900">
+      </div>
+
+      <div class="bg-gradient-to-br from-amber-50 via-white to-emerald-50 text-slate-800 p-6 sm:p-8 rounded-3xl border-8 border-amber-400 shadow-xl relative select-text">
+        <div class="text-center space-y-1">
+          <h1 class="text-2xl sm:text-3xl font-extrabold font-cinzel text-amber-800 tracking-wider">
+            SERTIFIKAT INVESTIGASI AI DETECTIVE
+          </h1>
+          <p class="text-xs text-slate-600 font-cinzel tracking-widest uppercase font-bold">
+            MASTER AI DETECTIVE: DATA LATIH & ADAB DIGITAL ISLAM
+          </p>
+        </div>
+
+        <div class="text-center my-6 space-y-2">
+          <p class="text-xs text-slate-500 font-bold uppercase">Diberikan kepada:</p>
+          <div id="cert-display-name" class="text-2xl sm:text-3xl font-black text-slate-900 font-cinzel border-b-4 border-amber-400 inline-block pb-1 px-8">
+            Ahmad Zaki Pratama
+          </div>
+          <p class="text-xs text-slate-700 max-w-xl mx-auto leading-relaxed pt-2 font-medium">
+            Telah berhasil menuntaskan misi investigasi ketimpangan dataset, menyeimbangkan data latih ('Adl), membersihkan model dari bias, dan membuktikan kehandalan model melalui verifikasi Tabayyun.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 my-6 text-center font-bold">
+          <div class="p-3 rounded-2xl bg-white border-2 border-emerald-200"><span class="text-[10px] text-slate-500 block">Misi</span><strong id="cert-case-tag" class="text-xs text-emerald-800 block">Sampah Organik</strong></div>
+          <div class="p-3 rounded-2xl bg-white border-2 border-sky-200"><span class="text-[10px] text-slate-500 block">Akurasi</span><strong class="text-xs text-sky-800 block font-mono">99.2% (Bebas Bias)</strong></div>
+          <div class="p-3 rounded-2xl bg-white border-2 border-amber-200"><span class="text-[10px] text-slate-500 block">Nilai</span><strong class="text-xs text-amber-800 block font-mono">100 / 100 (Mumtaz ⭐)</strong></div>
+          <div class="p-3 rounded-2xl bg-white border-2 border-purple-200"><span class="text-[10px] text-slate-500 block">Status</span><strong class="text-xs text-purple-800 block">Lolos Tabayyun ✓</strong></div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-6 pt-5 border-t-2 border-amber-200 text-xs">
+          <div class="text-left space-y-1">
+            <span class="text-[10px] font-mono font-bold text-slate-500 block">ID: <strong class="text-slate-800">ALAZHAR-AI-2026-9742</strong></span>
+            <span class="text-[10px] text-slate-500 font-semibold block">Terbit: 27 September 2026</span>
+          </div>
+          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-amber-400 to-amber-500 flex items-center justify-center p-1 shadow-md border-2 border-white">
+            <div class="w-full h-full rounded-full border-2 border-dashed border-amber-900 flex flex-col items-center justify-center text-amber-950 font-black text-[9px] text-center leading-tight">
+              <span>AI DETECTIVE</span><span class="text-[7px]">VERIFIED</span>
+            </div>
+          </div>
+          <div class="text-center sm:text-right space-y-1">
+            <div class="font-cinzel text-xs text-emerald-700 font-bold">✓ Terverifikasi Mandiri</div>
+            <div class="text-[10px] text-slate-500 font-medium">Sistem Pembelajaran AI Cerdas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT ================= -->
+  <script>
+    let audioCtx = null;
+    let soundEnabled = true;
+
+    function initAudio() {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+    }
+
+    function playTone(freq, type, duration, gainVal) {
+      if (!soundEnabled) return;
+      try {
+        initAudio();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(gainVal, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function sfxClick() { playTone(650, 'sine', 0.05, 0.15); }
+    function sfxAdd() { playTone(540, 'triangle', 0.12, 0.18); }
+    function sfxError() { playTone(160, 'sawtooth', 0.25, 0.2); }
+    function sfxFanfare() {
+      [523.25, 659.25, 783.99, 1046.50].forEach((f, i) => {
+        setTimeout(() => playTone(f, 'sine', 0.25, 0.2), i * 110);
+      });
+    }
+
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      document.getElementById('sound-btn').innerText = soundEnabled ? '🔊' : '🔇';
+      if (soundEnabled) sfxClick();
+    }
+
+    const CASES = {
+      'case-leaves': {
+        title: '🍂 Sampah Organik',
+        subjectTitle: 'Daun Cokelat Gugur di Halaman',
+        subjectSubtitle: 'Daun pohon rindang yang gugur di taman Al Azhar',
+        icon: '🍂',
+        catA: { name: 'Hijau', count: 18 },
+        catB: { name: 'Cokelat', count: 2 },
+        bias: { label: 'Sampah Anorganik / Plastik', conf: '98.4%', reason: 'Robot AI hanya dilatih dengan daun hijau. Warna cokelat disalahartikan sebagai plastik!' },
+        fair: { label: 'Sampah Organik Alami (Kompos)', conf: '99.2%', reason: 'Mewujudkan prinsip \'Adl dan Tabayyun: Jangan menilai hakikat sesuatu hanya dari warna luar!' },
+        samples: [
+          { id: 'l1', name: 'Daun Jati Cokelat Rapuh', desc: 'Warna cokelat lebar dan renyah', icon: '🍂' },
+          { id: 'l2', name: 'Daun Mangga Kuning Emas', desc: 'Gugur keemasan di rumput', icon: '🍁' },
+          { id: 'l3', name: 'Serasah Daun Campuran', desc: 'Remukan daun di bawah pohon', icon: '🌿' },
+          { id: 'l4', name: 'Daun Kering Berembun', desc: 'Cokelat terkena udara pagi', icon: '🍂' }
+        ],
+        stressTests: [
+          { name: 'Daun Cokelat Kena Hujan', desc: 'Permukaan basah memantul cahaya', acc: '98.8%' },
+          { name: 'Daun di Atas Pasir', desc: 'Latar kontras abu-abu terang', acc: '99.1%' }
+        ]
+      },
+      'case-apples': {
+        title: '🍎 Buah Manis',
+        subjectTitle: 'Apel Hijau Manalagi Malang',
+        subjectSubtitle: 'Buah lokal segar dengan bintik alami dan rasa manis',
+        icon: '🍏',
+        catA: { name: 'Merah', count: 19 },
+        catB: { name: 'Hijau', count: 1 },
+        bias: { label: 'Buah Mentah / Masam Beracun', conf: '96.8%', reason: 'Robot AI dilatih di luar negeri di mana apel selalu merah. Apel hijau lokal dibilang mentah!' },
+        fair: { label: 'Apel Manalagi Matang Manis (Juara A+)', conf: '99.4%', reason: 'Mewujudkan Siddiq dan Amanah: Melindungi hak dan rezeki petani lokal dengan algoritma adil.' },
+        samples: [
+          { id: 'a1', name: 'Apel Hijau Malang Matang', desc: 'Bintik manis dan wangi ranum', icon: '🍏' },
+          { id: 'a2', name: 'Apel Rome Beauty Semburat', desc: 'Gradasi hijau dan merah', icon: '🍎' },
+          { id: 'a3', name: 'Apel Hijau Renyah Manis', desc: 'Kadar manis tinggi 14 Brix', icon: '🍏' },
+          { id: 'a4', name: 'Apel Bersama Daun Segar', desc: 'Baru dipetik dari kebun', icon: '🍏' }
+        ],
+        stressTests: [
+          { name: 'Apel di Bawah Lampu Toko', desc: 'Pantulan sinar lampu terang', acc: '99.2%' },
+          { name: 'Apel Berembun Kulkas', desc: 'Tetesan air segar', acc: '98.9%' }
+        ]
+      },
+      'case-cats': {
+        title: '🐈 Kucing Lucu',
+        subjectTitle: 'Kucing Hitam Peliharaan Sehat',
+        subjectSubtitle: 'Kucing berbulu hitam yang manis dan menggemaskan',
+        icon: '🐈‍⬛',
+        catA: { name: 'Putih/Belang', count: 17 },
+        catB: { name: 'Hitam', count: 3 },
+        bias: { label: 'Bayangan / Benda Mati Kosong', conf: '94.6%', reason: 'Kamera pintar jarang melihat foto kucing hitam di cahaya redup. AI mengiranya bayangan!' },
+        fair: { label: 'Kucing Domestik Sehat & Lucu (Meow!)', conf: '99.1%', reason: 'Mewujudkan Amanah & Kasih Sayang: Menolak takhayul dan memperlakukan semua corak secara adil.' },
+        samples: [
+          { id: 'c1', name: 'Kucing Hitam Mata Bulat Bersinar', desc: 'Pupil mata bercahaya lucu', icon: '🐈‍⬛' },
+          { id: 'c2', name: 'Kucing Hitam Duduk Manis', desc: 'Siluet telinga segitiga lancip', icon: '🐈‍⬛' },
+          { id: 'c3', name: 'Kucing Hitam Berkalung Lonceng', desc: 'Lonceng emas mengkilap', icon: '🐈‍⬛' },
+          { id: 'c4', name: 'Kucing Hitam Tidur Mungil', desc: 'Pose tidur melingkar lucu', icon: '🐈‍⬛' }
+        ],
+        stressTests: [
+          { name: 'Kucing Berlari Lincah', desc: 'Gerakan ceria bermain bola', acc: '98.6%' },
+          { name: 'Kucing di Karpet Gelap', desc: 'Kontras lembut pencahayaan malam', acc: '99.3%' }
+        ]
+      }
+    };
+
+    let activeCaseId = 'case-leaves';
+    let addedSampleIds = [];
+    let isRetrained = false;
+    let isTraining = false;
+
+    function renderApp() {
+      const c = CASES[activeCaseId];
+      document.getElementById('sample-icon').innerText = c.icon;
+      document.getElementById('sample-title').innerText = c.subjectTitle;
+      document.getElementById('sample-desc').innerText = c.subjectSubtitle;
+
+      document.getElementById('label-cat-a').innerText = c.catA.name + ':';
+      document.getElementById('count-cat-a').innerText = c.catA.count;
+      document.getElementById('label-cat-b').innerText = c.catB.name + ':';
+
+      const totalB = c.catB.count + addedSampleIds.length;
+      document.getElementById('count-cat-b').innerText = totalB;
+
+      const total = c.catA.count + totalB;
+      const pctA = Math.round((c.catA.count / total) * 100);
+      const pctB = Math.round((totalB / total) * 100);
+
+      document.getElementById('bar-a').style.width = pctA + '%';
+      document.getElementById('bar-a').innerText = pctA + '%';
+      document.getElementById('bar-b').style.width = pctB + '%';
+      document.getElementById('bar-b').innerText = pctB + '%';
+
+      const isBalanced = addedSampleIds.length >= 3;
+      const balStatus = document.getElementById('balance-status');
+      if (isBalanced) {
+        balStatus.innerText = '✓ SUDAH SEIMBANG (ADIL)';
+        balStatus.className = 'font-extrabold text-xs px-2.5 py-0.5 rounded-full bg-emerald-200 text-emerald-900';
+      } else {
+        balStatus.innerText = '⚠️ BELUM SEIMBANG';
+        balStatus.className = 'font-extrabold text-xs px-2.5 py-0.5 rounded-full bg-amber-200 text-amber-900';
+      }
+
+      document.getElementById('samples-added-count').innerText = addedSampleIds.length + ' / ' + c.samples.length + ' Ditambahkan';
+
+      const bankList = document.getElementById('sample-bank-list');
+      bankList.innerHTML = '';
+      c.samples.forEach(s => {
+        const added = addedSampleIds.includes(s.id);
+        const card = document.createElement('div');
+        card.className = 'p-2.5 rounded-2xl border-2 flex items-center justify-between gap-3 ' + (added ? 'bg-emerald-50 border-emerald-300' : 'bg-white border-slate-200 hover:border-amber-400');
+        card.innerHTML = `
+          <div class="flex items-center gap-2.5 truncate">
+            <span class="text-2xl p-1 rounded-xl bg-slate-100 border border-slate-200 shrink-0">${s.icon}</span>
+            <div class="truncate">
+              <h5 class="text-xs font-black text-slate-900 truncate">${s.name}</h5>
+              <p class="text-[11px] text-slate-500 truncate">${s.desc}</p>
+            </div>
+          </div>
+          <button onclick="addSample('${s.id}')" ${added ? 'disabled' : ''} class="px-3 py-1.5 rounded-xl text-xs font-black ${added ? 'bg-emerald-100 text-emerald-800' : 'btn-game-amber cursor-pointer'}">
+            ${added ? '✓ Sudah Ada' : '+ Masukkan'}
+          </button>
+        `;
+        bankList.appendChild(card);
+      });
+
+      const retrainBtn = document.getElementById('btn-retrain');
+      if (isRetrained) {
+        retrainBtn.disabled = true;
+        retrainBtn.innerText = '✓ Robot Selesai Dilatih Ulang (Sukses!)';
+        retrainBtn.className = 'w-full py-3.5 rounded-2xl text-xs sm:text-sm font-black flex items-center justify-center gap-2 bg-slate-200 text-emerald-800';
+      } else if (isBalanced) {
+        retrainBtn.disabled = false;
+        retrainBtn.innerText = '🚀 Latih Ulang AI (Retrain Model Sekarang)';
+        retrainBtn.className = 'w-full py-3.5 rounded-2xl text-xs sm:text-sm font-black flex items-center justify-center gap-2 btn-game-emerald text-white cursor-pointer shadow-lg animate-pulse';
+      } else {
+        retrainBtn.disabled = true;
+        retrainBtn.innerText = `+ Masukkan ${3 - addedSampleIds.length} Foto Lagi untuk Latih Ulang`;
+        retrainBtn.className = 'w-full py-3.5 rounded-2xl text-xs sm:text-sm font-black flex items-center justify-center gap-2 bg-slate-200 text-slate-400 cursor-not-allowed border-2 border-slate-300';
+      }
+
+      const predBox = document.getElementById('prediction-box');
+      const predConf = document.getElementById('prediction-confidence');
+      const predReason = document.getElementById('prediction-reason');
+      const p1Status = document.getElementById('p1-status');
+      const p1Card = document.getElementById('panel-1');
+      const aiStatusBadge = document.getElementById('ai-status-badge');
+
+      if (isRetrained) {
+        predBox.className = 'p-3 rounded-xl border-2 font-black text-sm bg-emerald-50 border-emerald-400 text-emerald-900';
+        predBox.innerText = '✓ ' + c.fair.label;
+        predConf.innerText = c.fair.conf;
+        predConf.className = 'font-mono font-black text-xs px-2 py-0.5 rounded bg-emerald-100 text-emerald-800';
+        predReason.innerText = c.fair.reason;
+        p1Status.innerText = 'STABIL ✓';
+        p1Status.className = 'text-[11px] font-black px-2.5 py-1 rounded-full bg-emerald-200 text-emerald-900';
+        p1Card.className = 'clay-card-emerald p-5 flex flex-col justify-between transition-all';
+        aiStatusBadge.className = 'px-3.5 py-1.5 rounded-xl bg-emerald-500 text-white text-xs font-extrabold shadow-md flex items-center gap-1.5 animate-bounce';
+        aiStatusBadge.innerText = "✓ Model Seimbang & Adil ('Adl)";
+
+        document.getElementById('panel-3').className = 'clay-card-sky p-5 flex flex-col justify-between transition-all';
+        document.getElementById('p3-badge').className = 'w-8 h-8 rounded-xl bg-sky-500 text-white flex items-center justify-center font-black text-sm shadow-sm';
+        document.getElementById('p3-status').innerText = 'TERVERIFIKASI ⭐';
+        document.getElementById('p3-status').className = 'text-[11px] font-black px-2.5 py-1 rounded-full bg-emerald-200 text-emerald-900';
+        document.getElementById('p3-locked').classList.add('hidden');
+        document.getElementById('p3-unlocked').classList.remove('hidden');
+        document.getElementById('btn-cert-trigger').disabled = false;
+        document.getElementById('btn-cert-trigger').className = 'w-full py-3.5 rounded-2xl text-xs sm:text-sm font-black flex items-center justify-center gap-2 btn-game-amber text-amber-950 cursor-pointer shadow-lg animate-bounce';
+
+        document.getElementById('fair-prediction-title').innerText = '✓ ' + c.fair.label;
+        document.getElementById('fair-prediction-reason').innerText = c.fair.reason;
+
+        const stContainer = document.getElementById('stress-test-items');
+        stContainer.innerHTML = '';
+        c.stressTests.forEach(st => {
+          const item = document.createElement('div');
+          item.className = 'p-2 rounded-xl bg-slate-50 border border-slate-200 text-xs flex items-center justify-between gap-2';
+          item.innerHTML = `<div><span class="font-extrabold text-slate-800">${st.name}</span><span class="text-[10px] text-slate-500 block">${st.desc}</span></div><span class="text-[10px] px-2 py-0.5 rounded-lg font-mono font-black bg-emerald-100 text-emerald-900 border border-emerald-300">${st.acc}</span>`;
+          stContainer.appendChild(item);
+        });
+
+      } else {
+        predBox.className = 'p-3 rounded-xl border-2 font-black text-sm bg-rose-50 border-rose-400 text-rose-900';
+        predBox.innerText = '⚠️ ' + c.bias.label;
+        predConf.innerText = c.bias.conf;
+        predConf.className = 'font-mono font-black text-xs px-2 py-0.5 rounded bg-rose-100 text-rose-800';
+        predReason.innerText = c.bias.reason;
+        p1Status.innerText = 'BIAS ⚠️';
+        p1Status.className = 'text-[11px] font-black px-2.5 py-1 rounded-full bg-rose-200 text-rose-900';
+        p1Card.className = 'clay-card-rose p-5 flex flex-col justify-between transition-all';
+        aiStatusBadge.className = 'px-3.5 py-1.5 rounded-xl bg-rose-500 text-white text-xs font-extrabold shadow-md flex items-center gap-1.5 animate-pulse';
+        aiStatusBadge.innerText = '⚠️ Ada Halusinasi / Bias!';
+
+        document.getElementById('panel-3').className = 'clay-card-bright opacity-85 p-5 flex flex-col justify-between transition-all';
+        document.getElementById('p3-badge').className = 'w-8 h-8 rounded-xl bg-slate-200 text-slate-500 flex items-center justify-center font-black text-sm shadow-sm';
+        document.getElementById('p3-status').innerText = 'TERKUNCI 🔒';
+        document.getElementById('p3-status').className = 'text-[11px] font-black px-2.5 py-1 rounded-full bg-slate-200 text-slate-600';
+        document.getElementById('p3-locked').classList.remove('hidden');
+        document.getElementById('p3-unlocked').classList.add('hidden');
+        document.getElementById('btn-cert-trigger').disabled = true;
+        document.getElementById('btn-cert-trigger').className = 'w-full py-3.5 rounded-2xl text-xs sm:text-sm font-black flex items-center justify-center gap-2 bg-slate-200 text-slate-400 cursor-not-allowed border-2 border-slate-300';
+      }
+
+      document.getElementById('cert-case-tag').innerText = c.title;
+    }
+
+    function switchCase(caseId) {
+      sfxClick();
+      activeCaseId = caseId;
+      addedSampleIds = [];
+      isRetrained = false;
+      isTraining = false;
+
+      ['btn-case-leaves', 'btn-case-apples', 'btn-case-cats'].forEach(id => {
+        const btn = document.getElementById(id);
+        if (id === 'btn-' + caseId) {
+          btn.className = 'btn-game-emerald px-4 py-3 rounded-2xl text-xs sm:text-sm font-extrabold flex items-center justify-center gap-2';
+        } else {
+          btn.className = 'btn-game-white px-4 py-3 rounded-2xl text-xs sm:text-sm font-extrabold flex items-center justify-center gap-2';
+        }
+      });
+
+      renderApp();
+    }
+
+    function addSample(sampleId) {
+      if (addedSampleIds.includes(sampleId)) return;
+      sfxAdd();
+      addedSampleIds.push(sampleId);
+      renderApp();
+    }
+
+    function resetDataset() {
+      sfxClick();
+      addedSampleIds = [];
+      isRetrained = false;
+      isTraining = false;
+      renderApp();
+    }
+
+    function retestAI() {
+      sfxClick();
+      const predBox = document.getElementById('prediction-box');
+      predBox.innerText = 'Robot sedang mengamati piksel foto...';
+      predBox.className = 'p-3 rounded-xl border-2 font-black text-sm bg-sky-50 border-sky-400 text-sky-900 animate-pulse';
+      setTimeout(() => {
+        if (isRetrained) sfxFanfare(); else sfxError();
+        renderApp();
+      }, 600);
+    }
+
+    function startRetraining() {
+      if (addedSampleIds.length < 3 || isTraining) return;
+      sfxClick();
+      isTraining = true;
+      const banner = document.getElementById('training-banner');
+      banner.classList.remove('hidden');
+
+      let epoch = 0;
+      const timer = setInterval(() => {
+        epoch += 1;
+        playTone(587, 'sine', 0.03, 0.08);
+        document.getElementById('training-epoch-text').innerText = 'Epoch ' + epoch + '/20';
+        document.getElementById('training-progress-fill').style.width = ((epoch / 20) * 100) + '%';
+
+        const loss = Math.max(0.019, 0.84 * Math.exp(-epoch * 0.19)).toFixed(3);
+        const acc = Math.min(99.2, 54 + (45.2 * (1 - Math.exp(-epoch * 0.22)))).toFixed(1);
+        document.getElementById('training-loss-val').innerText = loss;
+        document.getElementById('training-acc-val').innerText = acc + '%';
+
+        if (epoch >= 20) {
+          clearInterval(timer);
+          isTraining = false;
+          isRetrained = true;
+          banner.classList.add('hidden');
+          sfxFanfare();
+          renderApp();
+        }
+      }, 110);
+    }
+
+    function runStressTest() {
+      sfxFanfare();
+      alert('✓ Hore! Seluruh variasi foto sulit lolos verifikasi Tabayyun dengan akurasi 99.1%!');
+    }
+
+    const canvas = document.getElementById('neural-canvas');
+    const ctx = canvas.getContext('2d');
+    let step = 0;
+
+    function drawNeuralNet() {
+      step += 0.05;
+      const w = canvas.width;
+      const h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      const layers = [
+        { x: 0.16 * w, nodes: [0.25 * h, 0.5 * h, 0.75 * h] },
+        { x: 0.50 * w, nodes: [0.18 * h, 0.38 * h, 0.62 * h, 0.82 * h] },
+        { x: 0.84 * w, nodes: [0.35 * h, 0.65 * h] }
+      ];
+
+      for (let l = 0; l < layers.length - 1; l++) {
+        const from = layers[l];
+        const to = layers[l + 1];
+        from.nodes.forEach((y1, i) => {
+          to.nodes.forEach((y2, j) => {
+            ctx.beginPath();
+            ctx.moveTo(from.x, y1);
+            ctx.lineTo(to.x, y2);
+            ctx.strokeStyle = !isRetrained ? (j === 0 ? 'rgba(239, 68, 68, 0.7)' : 'rgba(251, 191, 36, 0.4)') : 'rgba(16, 185, 129, 0.65)';
+            ctx.lineWidth = (!isRetrained && j === 0) ? 3 : 1.5;
+            ctx.stroke();
+
+            const phase = (step + (i + j) * 0.7) % 1;
+            const px = from.x + (to.x - from.x) * phase;
+            const py = y1 + (y2 - y1) * phase;
+            ctx.beginPath();
+            ctx.arc(px, py, !isRetrained ? 3 : 3.5, 0, Math.PI * 2);
+            ctx.fillStyle = !isRetrained ? '#ef4444' : '#10b981';
+            ctx.fill();
+          });
+        });
+      }
+
+      layers.forEach((layer, lIdx) => {
+        layer.nodes.forEach((y, nIdx) => {
+          ctx.beginPath();
+          ctx.arc(layer.x, y, 7.5, 0, Math.PI * 2);
+          if (lIdx === layers.length - 1) {
+            ctx.fillStyle = !isRetrained ? (nIdx === 0 ? '#f43f5e' : '#94a3b8') : (nIdx === 1 ? '#10b981' : '#cbd5e1');
+          } else {
+            ctx.fillStyle = !isRetrained ? '#f59e0b' : '#38bdf8';
+          }
+          ctx.fill();
+          ctx.lineWidth = 2;
+          ctx.strokeStyle = '#ffffff';
+          ctx.stroke();
+        });
+      });
+
+      requestAnimationFrame(drawNeuralNet);
+    }
+    requestAnimationFrame(drawNeuralNet);
+
+    function openModal(id) {
+      sfxClick();
+      document.getElementById(id).classList.remove('hidden');
+      document.getElementById(id).classList.add('flex');
+    }
+    function closeModal(id) {
+      sfxClick();
+      document.getElementById(id).classList.add('hidden');
+      document.getElementById(id).classList.remove('flex');
+    }
+
+    function updateCertName(val) {
+      document.getElementById('cert-display-name').innerText = val || 'Nama Murid';
+    }
+
+    function calculateQuizScore() {
+      sfxFanfare();
+      let score = 0;
+      const q1 = document.querySelector('input[name="q1"]:checked');
+      if (q1 && q1.value === '1') score += 20;
+      if (document.getElementById('q2-check').checked) score += 20;
+      const q3 = document.querySelector('input[name="q3"]:checked');
+      if (q3 && q3.value === '1') score += 20;
+      const q4 = document.querySelector('input[name="q4"]:checked');
+      if (q4 && q4.value === '1') score += 20;
+      const q5 = document.querySelector('input[name="q5"]:checked');
+      if (q5 && q5.value === '1') score += 20;
+
+      document.getElementById('quiz-score-display').innerText = score + ' / 100';
+      document.getElementById('quiz-result-box').classList.remove('hidden');
+    }
+
+    renderApp();
+  </script>
+</body>
+</html>
